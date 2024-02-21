@@ -1,0 +1,4 @@
+[nginx]
+enabled = true
+filter = nginx-reverse-proxy
+logpath = /var/log/nginx/access.log

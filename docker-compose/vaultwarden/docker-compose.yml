@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    environment:
+      - ADMIN_TOKEN=$ADMIN_TOKEN
+      - DOMAIN=https://warden.christophthiel.com
+      - I_REALLY_WANT_VOLATILE_STORAGE=true
+    image: vaultwarden/server:latest
+    ports:
+      - "8090:80"
+    restart: always
+    volumes:
+      - vaultwarden:/var/www/html
+      - vaultwarden-data:/data
+
+volumes:
+  vaultwarden:
+    name: "vaultwarden"
+  vaultwarden-data:
+    name: "vaultwarden-data"

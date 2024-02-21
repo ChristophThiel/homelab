@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  onlyoffice:
+    container_name: onlyoffice
+    environment:
+     - JWT_SECRET=${JWT_SECRET}
+    image: onlyoffice/documentserver
+    ports:
+     - 8008:80
+     - 8443:443
+    restart: always

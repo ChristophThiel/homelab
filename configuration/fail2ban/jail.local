@@ -1,0 +1,41 @@
+[INCLUDES]
+before = paths-debian.conf
+
+[DEFAULT]
+
+ignoreip = 127.0.0.1/8 10.8.0.1/32 10.8.0.2/32 10.8.0.3/32
+ignorecommand =
+bantime  = 1h
+findtime  = 1h
+maxretry = 3
+maxmatches = %(maxretry)s
+backend = auto
+usedns = warn
+logencoding = auto
+enabled = false
+mode = normal
+filter = %(__name__)s[mode=%(mode)s]
+
+destemail = root@localhost
+sender = root@<fq-hostname>
+mta = sendmail
+protocol = tcp
+chain = input
+port = 0:65535
+fail2ban_agent = Fail2Ban/%(fail2ban_version)s
+
+banaction = nftables-multiport
+banaction_allports = nftables-allports
+
+action_ = %(banaction)s[port="%(port)s", protocol="%(protocol)s", chain="%(chain)s"]
+action_mw = %(action_)s
+            %(mta)s-whois[sender="%(sender)s", dest="%(destemail)s", protocol="%(proto>
+action_mwl = %(action_)s
+             %(mta)s-whois-lines[sender="%(sender)s", dest="%(destemail)s", logpath="%>
+action_xarf = %(action_)s
+             xarf-login-attack[service=%(__name__)s, sender="%(sender)s", logpath="%(l>
+action_cf_mwl = cloudflare[cfuser="%(cfemail)s", cftoken="%(cfapikey)s"]
+                %(mta)s-whois-lines[sender="%(sender)s", dest="%(destemail)s", logpath>
+action_blocklist_de  = blocklist_de[email="%(sender)s", service="%(__name__)s", apikey>
+action_abuseipdb = abuseipdb
+action = %(action_)s
