@@ -1,0 +1,4 @@
+[radicale]
+enabled = true
+backend = systemd[journalfiles="/var/log/journal/remote/remote-10.8.0.2.journal"]
+filter = radicale

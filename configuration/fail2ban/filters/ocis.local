@@ -1,0 +1,9 @@
+[INCLUDES]
+before = common.conf
+
+[Definition]
+failregex = ^.*"service":"idm".*"message":"invalid credentials"((.|\n)*)remote-addr"."<ADDR>","method":"POST","status":204.*
+datepattern = ^%%Y-%%b-%%dT%%H:%%M:%%S\.*Z
+
+[Init]
+maxlines = 3
